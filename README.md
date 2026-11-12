@@ -16,4 +16,12 @@ import { unitTraits } from '@civ-clone/core-unit/Rules/UnitTraits';
 ruleRegistry.register(...unitTraits('civ2-unit:unit/trait', AEGISCruiser, new DefenceBonusVsAir(3, 5)));
 ```
 
+A rule that needs its parameters reads the traits themselves: `unit.traits(DefenceBonusVsAir)` for a unit, or
+`traitsOf(UnitClass, DefenceBonusVsAir, ruleRegistry)` (from `@civ-clone/core-unit/traits`) for a class. A type may be declared
+with more than one:
+
+```ts
+unit.traits(DefenceBonusVsAir).map((trait: DefenceBonusVsAir): number => trait.vsSingleUse);
+```
+
 Part of the unit traits design (civ-clone/web-renderer#1008).
